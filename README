@@ -1,29 +1,39 @@
-pwkickstart
+NAME
 
-Helps to generate kickstart passwords.
+pwkickstart - generate kickstart passwords
 
 SYNOPSIS
 
-  # pwkickstart 
-  Password: 
+	# pwkickstart
+	Password:
 
-  # md5
-  rootpw --iscrypted $1$SI7hD964QyK1.Iz/
-  # sha256
-  rootpw --iscrypted $5$eqAC4DfizzLlEwUQI3/Q6SEYqHGso3maNbtBc1wjyiyr2
-  # sha512
-  rootpw --iscrypted $6$MN7wS1QE3FYNZbOS19HfAN0JiloK6s24mSBrN71tXV8y.Blif1avdhTYt/
+	# md5
+	rootpw --iscrypted $1$SI$D964QyK1.Iz/
+	# sha256
+	rootpw --iscrypted $5$Ll/Q6$SEYqHGso3maNbtBc1wjyiyr2
+	# sha512
+	rootpw --iscrypted $6$MN7wS$1QE3FmSBrN71tXV8y.Blif1avdhTYt/
 
-The output was shortened to fit 80 columns in the example above.
+DESCRIPTION
 
-WHY
+Utility pwkickstart generates kickstart passwords from password input and
+prints them to standard output in three different formats: md5, sha256 and
+sha512.
 
-Because grub-crypt is no longer available in Fedora and RHEL 7+.
+Previously grub-crypt provided the same, but it is not longer available in
+some Linux distributions.
+
+The output in section was shortened to fit on screen in the SYNOPOSIS example
+above.
+
+LICENSE
+
+MIT License
+
+SEE ALSO
+
+openssl(1)
 
 AUTHOR
 
 Lukas Zapletal <lzap+spam@redhat.com>
-
-LICENSE
-
-Public domain or MIT.
