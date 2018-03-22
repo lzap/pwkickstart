@@ -1,16 +1,27 @@
 #!/usr/bin/env python3
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
+import sys
 import crypt,getpass,string,random
-chars = string.ascii_uppercase + string.ascii_lowercase + string.digits
-entry = getpass.getpass()
 
+try:
+    entry = sys.argv[1]
+    interactive = False
+except IndexError:
+    entry = getpass.getpass()
+    interactive = True
+
+chars = string.ascii_uppercase + string.ascii_lowercase + string.digits
 def pwd(prefix, seed_length):
     return crypt.crypt(entry, prefix + ''.join(random.choice(chars) for _ in range(seed_length)))
 
-print("\n# md5")
-print("rootpw --iscrypted " + pwd("$1$", 8))
-print("# sha256")
-print("rootpw --iscrypted " + pwd("$5$", 16))
-print("# sha512")
-print("rootpw --iscrypted " + pwd("$6$", 16))
+if interactive:
+    print("\n# md5")
+    print("rootpw --iscrypted " + pwd("$1$", 8))
+    print("# sha256")
+    print("rootpw --iscrypted " + pwd("$5$", 16))
+    print("# sha512")
+    print("rootpw --iscrypted " + pwd("$6$", 16))
+else:
+    print(pwd("$1$", 8))
+    print(pwd("$5$", 16))
+    print(pwd("$6$", 16))

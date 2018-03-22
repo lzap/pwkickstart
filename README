@@ -4,7 +4,9 @@ pwkickstart - generate kickstart passwords
 
 SYNOPSIS
 
-	# pwkickstart
+Generates kickstart-compatible syntax by default.
+
+	$ pwkickstart
 	Password:
 
 	# md5
@@ -25,6 +27,26 @@ some Linux distributions.
 
 The output in section was shortened to fit on screen in the SYNOPOSIS example
 above.
+
+NON-INTERACTIVE MODE
+
+The utility accepts exactly one parameter - the password. Entries are sorted
+from oldest to newest.
+
+  $ pwkickstart mypass 
+  $1$6FrN7YsS$2o3lfiD9T4LlUfKBgCe0X1
+  $5$S2Zab0elQkL7fN.ikw.jmZeb7qtEK7DJESPDv9
+  $6$slYmPDc8PtwOPmnx$9u3X3NE73XxuU7.5YlJAm/QMEahzx
+
+To get the "strongest" possible hash:
+
+  $ pwkickstart mypass | tail -n1
+  $6$slYmPDc8PtwOPmnx$9u3X3NE73XxuU7.5YlJAm/QMEahzx
+
+Grep exactly what's needed:
+
+  $ pwkickstart mypass | grep '\$6\$'
+  $6$slYmPDc8PtwOPmnx$9u3X3NE73XxuU7.5YlJAm/QMEahzx
 
 LICENSE
 
